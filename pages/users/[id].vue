@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Todo, User } from '@/types'
 </script>
 
 <!---- kullanıcıadı, todo'ları stordan çek.
