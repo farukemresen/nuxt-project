@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function fetchUsers() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    const res = await fetch('https://mockly.atlaxt.me/api/users')
     if (!res.ok)
       throw new Error('Network error')
     const data = await res.json()
