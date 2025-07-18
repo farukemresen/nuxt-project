@@ -23,11 +23,17 @@ export const useUserStore = defineStore('user', () => {
     users.value = data
     saveToLocal()
   }
+  async function fetchUuid() {
+    const res = await fetch('https://mockly.atlaxt.me/api/uuid')
+    const data = await res.json()
+    return data.uuid
+  }
 
   return {
     users,
     fetchUsers,
     getFromLocal,
     saveToLocal,
+    fetchUuid,
   }
 })
