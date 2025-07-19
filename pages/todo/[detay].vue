@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Todo, User } from '@/types'
-
 definePageMeta({
   name: 'info',
 })

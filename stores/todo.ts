@@ -41,6 +41,32 @@ export const useTodoStore = defineStore('todo', () => {
     savetoLocal()
   }
 
+  const searchText = ref('')
+  const filter = ref<'all' | 'completed' | 'incomplete'>('all')
+
+  const filteredTodos = computed(() => {
+    let list = todos.value
+    const search = searchText.value.toLowerCase()
+
+    if (search)
+      list = list.filter(todo => todo.text.toLowerCase().includes(search))
+
+    if (filter.value === 'completed')
+      list = list.filter(todo => todo.isCompleted)
+    else if (filter.value === 'incomplete')
+      list = list.filter(todo => !todo.isCompleted)
+
+    return list
+  })
+
+  function setSearchText(text: string) {
+    searchText.value = text
+  }
+
+  function setFilter(value: 'all' | 'completed' | 'incomplete') {
+    filter.value = value
+  }
+
   return {
     todo,
     todos,
@@ -50,5 +76,10 @@ export const useTodoStore = defineStore('todo', () => {
     toggleCompleted,
     getList,
     savetoLocal,
+    searchText,
+    filter,
+    setSearchText,
+    setFilter,
+    filteredTodos,
   }
 })
