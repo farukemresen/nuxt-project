@@ -50,3 +50,9 @@ Herkesin todo listesi olan bir kullanıcı listesi uygulaması geliştirmek.
 ---
 
 > Gereksiz dosya, component veya karmaşıklıktan kaçın. Görev bitince kodunu teslim etmeye hazır ol.
+
+---
+Detay sayfasından da todo detayı sayfasına (3. sayfaya) gidip orada todo açıklamasıyla (ve update özelliği) beraber birkaç özellik daha ekleyecektim.
+Ama navigateto ile sayfa geçişi özelliği component'lere ayrılınca çalışmamaya başladı. Bu yüzden görev süresi de bittiği için 3. sayfayı iptal ettim.
+Ayrıca yine component'e ayrılınca input'a göre todo filtreleme özelliği de çalışmamaya başladı. Çözüm bulamadım.
+---
