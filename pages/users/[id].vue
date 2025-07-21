@@ -13,6 +13,7 @@ const userStore = useUserStore()
 onMounted(() => {
   todoStore.getList()
   userStore.getFromLocal()
+  todoStore.fetchTodos()
 })
 </script>
 
@@ -24,7 +25,7 @@ onMounted(() => {
       Kullanıcı Detayı
     </h1>
 
-    <div class="grid grid-cols-3 gap-10 ">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 ">
       <TodoInfobuttons />
       <TodoCard class="col-span-2" />
     </div>

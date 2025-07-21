@@ -61,7 +61,7 @@ function toggleCompleted(id: string) {
 
     <div class="flex flex-col space-y-3 w-130">
       <div
-        v-for="todo in todoStore.filteredTodos.filter(todo => todo.userId === route.params.id)"
+        v-for="todo in todoStore.filteredTodos"
         :key="todo.id"
         class="flex justify-between hover:scale-105 border border-indigo-600 rounded-lg p-4 bg-slate-800 text-indigo-100 shadow hover:shadow-lg transition"
       >

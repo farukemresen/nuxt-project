@@ -4,7 +4,8 @@ import { ref } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
   const users = ref<User[]>([])
-  const STORAGE_KEY = 'users'
+  const runtimeConfig = useRuntimeConfig()
+  const STORAGE_KEY = runtimeConfig.public.userKey as string
 
   const getFromLocal = () => {
     const data = localStorage.getItem(STORAGE_KEY)

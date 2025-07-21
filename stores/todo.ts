@@ -2,11 +2,13 @@ import type { Todo } from '~/types'
 import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 export const useTodoStore = defineStore('todo', () => {
   const todo = ref<Todo>()
   const todos = ref<Todo[]>([])
-  const STORAGE_KEY = 'todos'
+  const runtimeConfig = useRuntimeConfig()
+  const STORAGE_KEY = runtimeConfig.public.todoKey as string
 
   const getList = () => {
     const data = localStorage.getItem(STORAGE_KEY)
@@ -43,9 +45,11 @@ export const useTodoStore = defineStore('todo', () => {
 
   const searchText = ref('')
   const filter = ref<'all' | 'completed' | 'incomplete'>('all')
+  const route = useRoute()
 
   const filteredTodos = computed(() => {
-    let list = todos.value
+    const userId = String(route.params.id)
+    let list = todos.value.filter(todo => todo.userId === userId)
     const search = searchText.value.toLowerCase()
 
     if (search)
@@ -67,6 +71,22 @@ export const useTodoStore = defineStore('todo', () => {
     filter.value = value
   }
 
+  async function fetchTodos() {
+    const res = await fetch(`${runtimeConfig.public.apiBase}/todos`)
+    if (!res.ok) {
+      getList()
+      return
+    }
+    const data = await res.json()
+    todos.value = data.map((item: any) => ({
+      id: String(item.id),
+      userId: String(item.userId),
+      text: item.title,
+      isCompleted: item.completed,
+    }))
+    savetoLocal()
+  }
+
   return {
     todo,
     todos,
@@ -81,5 +101,6 @@ export const useTodoStore = defineStore('todo', () => {
     setSearchText,
     setFilter,
     filteredTodos,
+    fetchTodos,
   }
 })

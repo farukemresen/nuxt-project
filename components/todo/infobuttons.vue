@@ -18,8 +18,9 @@ onMounted(async () => {
   uuid.value = await userStore.fetchUuid()
 })
 
-function onSearchInput(value: string) {
-  todoStore.setSearchText(value)
+function onSearchInput(event: Event) {
+  const target = event.target as HTMLInputElement
+  todoStore.setSearchText(target.value)
 }
 </script>
 
@@ -42,7 +43,7 @@ function onSearchInput(value: string) {
 
     <div class="flex p-3">
       <UInput
-        :value="todoStore.searchText"
+        v-model="todoStore.searchText"
         type="text"
         placeholder="Todo ara."
         size="md"
