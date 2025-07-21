@@ -27,7 +27,7 @@ onMounted(() => {
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 ">
       <TodoInfobuttons />
-      <TodoCard class="col-span-2" />
+      <TodoCard class="md:col-span-2" />
     </div>
   </div>
 </template>

@@ -35,40 +35,42 @@ function toggleCompleted(id: string) {
 </script>
 
 <template>
-  <div class="space-y-4 max-h-screen p-1 max-w-xl mx-auto">
-    <h2 class="text-3xl font-semibold text-indigo-300 mb-4 text-center">
+  <div class="space-y-4 max-h-screen p-2 sm:p-4 w-full">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-indigo-300 mb-4 text-center">
       Todo Listesi
     </h2>
 
-    <div class="flex space-x-2 mb-4 justify-center w-110 max-w-md mx-auto">
-      <UInput
-        v-model="newTodoText"
-        placeholder="Yeni todo girin..."
-        size="lg"
-        rounded
-        class="w-full"
-        @keyup.enter="addTodo"
-      />
-      <UButton
-        icon="lucide:plus"
-        color="primary"
-        size="lg"
-        rounded
-        class="hover:bg-blue-800 hover:scale-105 hover:rotate-45 transition-all"
-        @click="addTodo"
-      />
+    <div class="flex justify-center mb-4">
+      <div class="flex max-w-2xl w-100 space-x-2 items-center">
+        <UInput
+          v-model="newTodoText"
+          placeholder="Yeni todo girin..."
+          size="lg"
+          rounded
+          class="w-full"
+          @keyup.enter="addTodo"
+        />
+        <UButton
+          icon="lucide:plus"
+          color="primary"
+          size="lg"
+          rounded
+          class="hover:bg-blue-800 hover:scale-105 hover:rotate-45 transition-all shrink-0 "
+          @click="addTodo"
+        />
+      </div>
     </div>
 
-    <div class="flex flex-col space-y-3 w-130">
+    <div class="flex flex-col space-y-3 gap-4">
       <div
         v-for="todo in todoStore.filteredTodos"
         :key="todo.id"
-        class="flex justify-between hover:scale-105 border border-indigo-600 rounded-lg p-4 bg-slate-800 text-indigo-100 shadow hover:shadow-lg transition"
+        class="w-full max-w-2xl mx-auto flex justify-between hover:scale-105 border border-indigo-600 rounded-lg p-4 bg-slate-800 text-indigo-100 shadow hover:shadow-lg transition"
       >
         <p class="font-medium">
           {{ todo.text }}
         </p>
-        <div class="flex space-x-2">
+        <div class="flex flex-wrap gap-2 justify-end">
           <UButton
             :icon="todo.isCompleted ? 'lucide:refresh-ccw' : 'lucide:check'"
             size="md"
