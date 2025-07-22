@@ -42,11 +42,11 @@ useHead({
         class="hover:text-yellow-800 dark:text-yellow-500 size-6 transition-transform hover:scale-110"
       />
     </div>
-    <AppHeader />
+    <AppHeader class="sticky top-0 z-40 bg-transparent backdrop-blur-md" />
     <div class="flex-1 w-full flex flex-col z-10">
       <slot />
     </div>
-    <AppFooter />
+    <AppFooter class="sticky bottom-0 z-40 bg-transparent backdrop-blur-md" />
   </div>
 </template>
 

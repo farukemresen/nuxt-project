@@ -17,7 +17,7 @@ onMounted(async () => {
       <li
         v-for="user in userStore.users"
         :key="user.id"
-        class="bg-white dark:bg-slate-900 shadow-md rounded-lg p-4 mb-4 flex items-center justify-between"
+        class="bg-white dark:bg-slate-900 shadow-md rounded-lg p-4 mb-4 hover:scale-105 transition-all flex items-center justify-between"
       >
         <div>
           <p class="font-mono font-semibold text-lg text-gray-900 dark:text-gray-100">

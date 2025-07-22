@@ -13,14 +13,13 @@ const userStore = useUserStore()
 onMounted(() => {
   todoStore.getList()
   userStore.getFromLocal()
-  todoStore.fetchTodos()
 })
 </script>
 
 <template>
   <div class="p-5 ">
     <h1
-      class="text-center font-mono font-semibold text-5xl text-teal-500 mb-12 bg-teal-900 py-6 rounded-lg opacity-90"
+      class="text-center font-mono font-semibold text-5xl text-cyan-700 mb-12  bg-gradient-to-r from-transparent via-indigo-800 to-transparent py-6 rounded-lg opacity-90"
     >
       Kullanıcı Detayı
     </h1>

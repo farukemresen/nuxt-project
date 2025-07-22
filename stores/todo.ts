@@ -71,22 +71,6 @@ export const useTodoStore = defineStore('todo', () => {
     filter.value = value
   }
 
-  async function fetchTodos() {
-    const res = await fetch(`${runtimeConfig.public.apiBase}/todos`)
-    if (!res.ok) {
-      getList()
-      return
-    }
-    const data = await res.json()
-    todos.value = data.map((item: any) => ({
-      id: String(item.id),
-      userId: String(item.userId),
-      text: item.title,
-      isCompleted: item.completed,
-    }))
-    savetoLocal()
-  }
-
   return {
     todo,
     todos,
@@ -101,6 +85,5 @@ export const useTodoStore = defineStore('todo', () => {
     setSearchText,
     setFilter,
     filteredTodos,
-    fetchTodos,
   }
 })

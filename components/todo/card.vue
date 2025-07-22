@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { navigateTo, useToast, useTodoStore } from '#imports'
+import type { Todo } from '~/types'
+import { useToast, useTodoStore } from '#imports'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const todoStore = useTodoStore()
 const toast = useToast()
 const route = useRoute()
+const router = useRouter()
 const newTodoText = ref('')
 /**
  * toast ekleyince store'dan çağıramadım, fonksiyonları tekrar yazmak zorunda kaldım.
@@ -32,11 +34,18 @@ function toggleCompleted(id: string) {
   else
     toast.add({ title: 'Yapılmadı işaretlendi.', color: 'info' })
 }
+
+function detayaGit(todo: Todo) {
+  router.push({
+    name: 'users-todo-id',
+    params: { id: String(todo.id) },
+  })
+}
 </script>
 
 <template>
   <div class="space-y-4 max-h-screen p-2 sm:p-4 w-full">
-    <h2 class="text-2xl sm:text-3xl font-semibold text-indigo-300 mb-4 text-center">
+    <h2 class="text-3xl sm:text-4xl font-semibold text-indigo-300 mb-4 text-center">
       Todo Listesi
     </h2>
 
@@ -65,7 +74,7 @@ function toggleCompleted(id: string) {
       <div
         v-for="todo in todoStore.filteredTodos"
         :key="todo.id"
-        class="w-full max-w-2xl mx-auto flex justify-between hover:scale-105 border border-indigo-600 rounded-lg p-4 bg-slate-800 text-indigo-100 shadow hover:shadow-lg transition"
+        class="w-full max-w-2xl mx-auto flex items-center justify-between hover:scale-105 border border-indigo-600 rounded-lg p-4 bg-slate-800 text-indigo-100 shadow hover:shadow-lg transition"
       >
         <p class="font-medium">
           {{ todo.text }}
@@ -87,9 +96,7 @@ function toggleCompleted(id: string) {
             variant="outline"
             rounded
             class="hover:bg-violet-950 transition-all hover:scale-105"
-            @click="navigateTo({
-              name: 'info', params: { id: todo.id },
-            })"
+            @click="detayaGit(todo)"
           />
           <UButton
             icon="lucide:x"
