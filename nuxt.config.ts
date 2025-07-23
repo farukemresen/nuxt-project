@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-14',
   modules: ['@nuxt/ui', '@nuxt/fonts', '@pinia/nuxt'],
@@ -5,9 +7,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: '123', // sadece server
     public: {
-      apiBase: 'https://mockly.atlaxt.me/api', // hem server hem client
-      userKey: 'nuxt-users',
-      todoKey: 'nuxt-todos',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      userKey: process.env.NUXT_PUBLIC_USER_KEY,
+      todoKey: process.env.NUXT_PUBLIC_TODO_KEY,
     },
   },
 })

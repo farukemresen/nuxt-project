@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useThemeToggle } from '@/utils/tema'
-
-const { isDark, colorMode } = useThemeToggle()
-
 useHead({
   title: 'User Todo List',
 })
@@ -28,20 +24,14 @@ useHead({
         />
       </div>
     </div>
-    <div class="absolute top-4 right-4 z-50 flex items-center gap-2">
-      <ClientOnly v-if="!colorMode?.forced">
-        <USwitch
-          color="secondary"
-          variant="ghost"
-          class="hover:scale-110 transition-all"
-          @click="isDark = !isDark"
-        />
-      </ClientOnly>
-      <UIcon
-        name="i-lucide-lightbulb"
-        class="hover:text-yellow-800 dark:text-yellow-500 size-6 transition-transform hover:scale-110"
-      />
-    </div>
+    <USwitch
+      color="secondary"
+      checked-icon="i-heroicons-sun"
+      unchecked-icon="i-heroicons-moon"
+      variant="ghost"
+      class="hover:scale-110 transition-all absolute top-4 right-4 z-50 flex items-center gap-2"
+      @click="toggleTheme"
+    />
     <AppHeader class="sticky top-0 z-40 bg-transparent backdrop-blur-md" />
     <div class="flex-1 w-full flex flex-col z-10">
       <slot />

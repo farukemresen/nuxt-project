@@ -1,21 +1,6 @@
-// utils/theme.ts
-import { useColorMode } from '#imports'
-import { computed } from 'vue'
+export const isDark = computed(() => useColorMode().value === 'dark')
 
-export function useThemeToggle() {
+export function toggleTheme() {
   const colorMode = useColorMode()
-
-  const isDark = computed({
-    get() {
-      return colorMode.value === 'dark'
-    },
-    set(_isDark: boolean) {
-      colorMode.preference = _isDark ? 'dark' : 'light'
-    },
-  })
-
-  return {
-    isDark,
-    colorMode,
-  }
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }

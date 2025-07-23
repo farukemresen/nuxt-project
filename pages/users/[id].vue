@@ -2,6 +2,11 @@
 definePageMeta({
   name: 'details',
 })
+
+const todoStore = useTodoStore()
+onMounted(async () => {
+  await todoStore.getList()
+})
 </script>
 
 <template>
