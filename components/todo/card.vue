@@ -9,6 +9,11 @@ const toast = useToast()
 const route = useRoute()
 const router = useRouter()
 const newTodoText = ref('')
+
+onMounted(() => {
+  todoStore.getList()
+})
+
 /**
  * toast ekleyince store'dan çağıramadım, fonksiyonları tekrar yazmak zorunda kaldım.
  */
@@ -62,7 +67,8 @@ function detayaGit(todo: Todo) {
         <UButton
           icon="lucide:plus"
           color="primary"
-          size="lg"
+          variant="outline"
+          size="md"
           rounded
           class="hover:bg-blue-800 hover:scale-105 hover:rotate-45 transition-all shrink-0 "
           @click="addTodo"

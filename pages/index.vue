@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { UserList } from '#components'
-
 definePageMeta({
   name: 'home',
 })
