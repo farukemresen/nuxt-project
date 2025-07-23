@@ -1,22 +1,9 @@
 <script setup lang="ts">
-import { useTodoStore, useUserStore } from '#imports'
-import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
-
 const todoStore = useTodoStore()
 const userStore = useUserStore()
 const route = useRoute()
 
 const user = computed(() => userStore.users.find(u => u.id === Number(route.params.id)))
-
-onMounted(() => {
-  userStore.getFromLocal()
-})
-
-const uuid = ref('')
-onMounted(async () => {
-  uuid.value = await userStore.fetchUuid()
-})
 
 function onSearchInput(event: Event) {
   const target = event.target as HTMLInputElement
@@ -87,10 +74,6 @@ function onSearchInput(event: Event) {
           @input="onSearchInput"
         />
       </div>
-    </div>
-
-    <div class="mt-4 text-amber-400 font-mono text-sm">
-      UUID: {{ uuid }}
     </div>
   </div>
 </template>

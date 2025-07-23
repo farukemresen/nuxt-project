@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { Todo } from '~/types'
-import { useToast, useTodoStore } from '#imports'
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 const todoStore = useTodoStore()
 const toast = useToast()
@@ -10,20 +7,13 @@ const route = useRoute()
 const router = useRouter()
 const newTodoText = ref('')
 
-onMounted(() => {
-  todoStore.getList()
-})
-
-/**
- * toast ekleyince store'dan çağıramadım, fonksiyonları tekrar yazmak zorunda kaldım.
- */
 function addTodo() {
   const text = newTodoText.value.trim()
   if (!text)
     return
   todoStore.addTodo(text, route.params.id as string)
   newTodoText.value = ''
-  toast.add({ title: 'Todo eklendi.', color: 'warning' })
+  toast.add({ title: 'Todo eklendi.', color: 'success' })
 }
 
 function deleteTodo(id: string) {
@@ -37,7 +27,7 @@ function toggleCompleted(id: string) {
   if (current?.isCompleted)
     toast.add({ title: 'Tamamlandı işaretlendi.', color: 'success' })
   else
-    toast.add({ title: 'Yapılmadı işaretlendi.', color: 'info' })
+    toast.add({ title: 'Yapılmadı işaretlendi.', color: 'warning' })
 }
 
 function detayaGit(todo: Todo) {

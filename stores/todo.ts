@@ -11,6 +11,8 @@ export const useTodoStore = defineStore('todo', () => {
   const STORAGE_KEY = runtimeConfig.public.todoKey as string
 
   const getList = () => {
+    if (todos.value.length > 0)
+      return
     const data = localStorage.getItem(STORAGE_KEY)
     todos.value = data ? JSON.parse(data) : []
   }

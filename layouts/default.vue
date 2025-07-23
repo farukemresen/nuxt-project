@@ -1,7 +1,5 @@
 <script setup lang="ts">
-useHead({
-  title: 'User Todo List',
-})
+
 </script>
 
 <template>

@@ -1,19 +1,7 @@
 <script setup lang ="ts">
-import { useTodoStore, useUserStore } from '#imports'
-import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-
 const route = useRoute()
 const todoStore = useTodoStore()
 const userStore = useUserStore()
-
-onMounted(async () => {
-  await todoStore.getList()
-  userStore.getFromLocal()
-
-  const id = route.params.id
-  todoStore.todo = todoStore.todos.find(todo => todo.id === id)
-})
 
 const user = computed(() => {
   const todo = todoStore.todos.find(todo => todo.id === route.params.id)

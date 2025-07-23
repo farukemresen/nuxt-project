@@ -2,10 +2,12 @@
 definePageMeta({
   name: 'details',
 })
-
+const userStore = useUserStore()
 const todoStore = useTodoStore()
-onMounted(async () => {
-  await todoStore.getList()
+
+onMounted(() => {
+  userStore.getFromLocal()
+  todoStore.getList()
 })
 </script>
 
